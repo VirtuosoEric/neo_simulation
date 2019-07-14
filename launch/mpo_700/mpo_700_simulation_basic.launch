@@ -2,7 +2,9 @@
 <launch>
 
   <!--should be configured in simulation.launch-->
-  <arg name="world_name_global" default="worlds/empty.world"/>
+  <!-- <arg name="world_name_global" default="worlds/empty.world"/> -->
+  <!-- <arg name="world_name_global" value="$(find turtlebot3_gazebo)/worlds/turtlebot3_world.world"/> -->
+  <arg name="world_name_global" default="$(find neo_simulation)/worlds/neo_workshop.world"/>
   
   <!--To launch RVIZ set the value to true-->
   <arg name="rviz" value="false"/>
@@ -11,7 +13,7 @@
   <arg name="scanunifier" value="true"/>
 
   <!--To move robot using teleop_keyboard-->
-  <arg name="software_joystick" value="true"/>
+  <arg name="software_joystick" value="false"/>
 
 <!---=================================================================================================================================================================-->
 

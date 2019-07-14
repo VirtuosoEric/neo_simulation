@@ -12,13 +12,13 @@ TebLocalPlannerROS:
  max_vel_x: 0.6
  #Maximum translational velocity of the robot in meters/sec 
 
- max_vel_x_backwards: 0.4
+ max_vel_x_backwards: 0.6
  #Maximum absolute translational velocity of the robot while driving backwards in meters/sec. See optimization parameter weight_kinematics_forward_drive 
 
  max_vel_theta: 0.8
  #Maximum angular velocity of the robot in radians/sec 
  
- footprint_model/type: "line"
+ footprint_model/type: "point"
  #Specify the robot footprint model type used for optimization. Different types are "point", "circular", "line", 
  #"two_circles" and "polygon." 
  #The type of the model significantly influences the required computation time.
@@ -182,10 +182,10 @@ TebLocalPlannerROS:
  penalty_epsilon: 0.1  
  #small safety margin to penalty functions for hard-constraint approximations
 
- weight_max_vel_x: 2.0 
+ weight_max_vel_x: 4.0 
  #Optimization weight for satisfying the maximum allowed translational velocity
 
- weight_max_vel_y: 1.0 
+ weight_max_vel_y: 4.0 
  #Optimization weight for satisfying the maximum allowed translational velocity
  #ONLY FOR HOLONOMIC 
 
@@ -207,15 +207,17 @@ TebLocalPlannerROS:
  #since the kinematics equation constitutes an equality constraint, even a value of 1000 does not 
  #imply a bad matrix condition due to small 'raw' cost values in comparison to other costs).
 
- weight_kinematics_forward_drive: 0.5
+ weight_kinematics_forward_drive: 0
  #Optimization weight for forcing the robot to choose only forward directions (positive transl. velocities). 
  #A small weight (e.g. 1.0) still allows driving backwards.
 
- weight_kinematics_turning_radius: 1.0
+ weight_kinematics_turning_radius: 0
  #Optimization weight for enforcing a minimum turning radius (only for carlike robots).
 
- weight_optimaltime: 1.0
+ weight_optimaltime: 10
  #Optimization weight for contracting the trajectory w.r.t transition/execution time
+
+ weight_shortest_path: 10
 
  weight_obstacle: 100.0
  #Optimization weight for keeping a minimum distance from obstacles
@@ -283,7 +285,7 @@ TebLocalPlannerROS:
  #Specify the value of the scalar product between obstacle heading and goal heading 
  #in order to take them (obstacles) into account for exploration.
 
- visualize_hc_graph: false
+ visualize_hc_graph: true
  #Visualize the graph that is created for exploring distinctive trajectories 
  #(check marker message in rviz)
 
@@ -302,7 +304,7 @@ TebLocalPlannerROS:
  odom_topic: odom
  #Topic name of the odometry message, provided by the robot driver or simulator.
 
- map_frame: odom
+ map_frame: map
  #Global planning frame (in case of a static map, this parameter must be usually changed to "/map".
 
 
