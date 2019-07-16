@@ -26,12 +26,12 @@
     <!-- rosparam file="$(find neo_simulation)/config/mpo_700/move_base/local_planner/eband_local_planner/eband_planner.yaml" command="load" /-->
 
     <!-- Teb -->
-    <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS"/>
-    <rosparam file="$(find neo_simulation)/config/mpo_700/move_base/local_planner/teb_local_planner/teb_planner.yaml" command="load" />
+    <!-- <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS"/> -->
+    <!-- <rosparam file="$(find neo_simulation)/config/mpo_700/move_base/local_planner/teb_local_planner/teb_planner.yaml" command="load" /> -->
     
     <!-- DWA -->
-    <!-- <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS"/> -->
-    <!-- <rosparam file="$(find neo_simulation)/config/mpo_700/move_base/local_planner/dwa_local_planner/dwa_planner.yaml" command="load" /> -->
+    <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS"/>
+    <rosparam file="$(find neo_simulation)/config/mpo_700/move_base/local_planner/dwa_local_planner/dwa_planner.yaml" command="load" />
 
     <!-- Trajectory -->
     <!-- <param name="base_local_planner" value="trajectory_local_planner/TrajectoryPlannerROS"/> -->
@@ -39,7 +39,29 @@
 
     <!-- Common -->
     <rosparam file="$(find neo_simulation)/config/mpo_700/move_base/move_base/move_base.yaml" command="load" />
+    <remap from="cmd_vel" to="cmd_vel_2"/>
+  </node>
 
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base2" output="screen">
+
+    <!-- Costmaps -->
+    <rosparam file="$(find neo_simulation)/config/mpo_700/move_base/costmaps/costmap_common.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find neo_simulation)/config/mpo_700/move_base/costmaps/costmap_common.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find neo_simulation)/config/mpo_700/move_base/costmaps/costmap_local.yaml" command="load" />
+    <rosparam file="$(find neo_simulation)/config/mpo_700/move_base/costmaps/costmap_global.yaml" command="load" />
+
+    <!-- Global Planner -->
+
+    <!-- NavFn -->
+    <param name="base_global_planner" value="navfn/NavfnROS"/>
+    <rosparam file="$(find neo_simulation)/config/mpo_700/move_base/global_planner/NavFnROS/navfnros_planner.yaml" command="load" />
+    <rosparam file="$(find neo_simulation)/config/mpo_700/move_base/move_base/move_base.yaml" command="load" />
+    
+    <!-- DWA -->
+    <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS"/>
+    <rosparam file="$(find neo_simulation)/config/mpo_700/move_base/local_planner/dwa_local_planner/dwa_planner_2.yaml" command="load" />
+    
+    <remap from="cmd_vel" to="cmd_vel_3"/>
   </node>
 
 </launch>
