@@ -39,8 +39,9 @@
 
     <!-- Common -->
     <rosparam file="$(find neo_simulation)/config/mpo_700/move_base/move_base/move_base.yaml" command="load" />
-    <remap from="cmd_vel" to="cmd_vel_2"/>
+    <!-- <remap from="cmd_vel" to="cmd_vel_2"/> -->
   </node>
+
 
   <node pkg="move_base" type="move_base" respawn="false" name="move_base2" output="screen">
 
@@ -63,5 +64,7 @@
     
     <remap from="cmd_vel" to="cmd_vel_3"/>
   </node>
+
+
 
 </launch>
