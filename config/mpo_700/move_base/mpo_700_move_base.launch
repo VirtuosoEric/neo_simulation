@@ -39,7 +39,7 @@
 
     <!-- Common -->
     <rosparam file="$(find neo_simulation)/config/mpo_700/move_base/move_base/move_base.yaml" command="load" />
-    <!-- <remap from="cmd_vel" to="cmd_vel_2"/> -->
+    <remap from="cmd_vel" to="cmd_vel_normal"/>
   </node>
 
 
@@ -60,9 +60,9 @@
     
     <!-- DWA -->
     <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS"/>
-    <rosparam file="$(find neo_simulation)/config/mpo_700/move_base/local_planner/dwa_local_planner/dwa_planner_2.yaml" command="load" />
+    <rosparam file="$(find neo_simulation)/config/mpo_700/move_base/local_planner/dwa_local_planner/dwa_no_rotation.yaml" command="load" />
     
-    <remap from="cmd_vel" to="cmd_vel_3"/>
+    <remap from="cmd_vel" to="cmd_vel_no_rotation"/>
   </node>
 
 
